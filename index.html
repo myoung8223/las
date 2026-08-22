@@ -25,8 +25,12 @@
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
     background:var(--bg); color:var(--text);
     line-height:1.4; -webkit-text-size-adjust:100%; font-size:14px;
-    padding:9px; max-width:380px; margin:0 auto;
+    padding:10px; max-width:620px; margin:0 auto;
   }
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+  .field{display:flex;flex-direction:column;min-width:0}
+  .field.wide{grid-column:1 / -1}
+  @media(max-width:520px){ .fields{grid-template-columns:1fr} }
   h1{font-size:1rem;margin:0 0 1px}
   .sub{color:var(--muted);font-size:.78rem;margin:0 0 7px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:8px 11px;margin:0 0 7px}
@@ -91,8 +95,10 @@
 
 <div class="card">
   <h2>Status</h2>
-  <div class="kv"><span>Connection</span><span class="status"><span id="statDot" class="dot"></span><span id="statText">Idle</span></span></div>
-  <div class="chk" style="margin-top:12px"><input type="checkbox" id="wakeToggle"><label for="wakeToggle">Keep screen awake <span style="color:var(--muted);font-weight:400">(recommended for the display)</span></label></div>
+  <div class="fields">
+    <div class="field"><div class="kv"><span>Connection</span><span class="status"><span id="statDot" class="dot"></span><span id="statText">Idle</span></span></div></div>
+    <div class="field"><div class="chk" style="margin-top:0"><input type="checkbox" id="wakeToggle"><label for="wakeToggle">Keep screen awake</label></div></div>
+  </div>
   <p class="hint hidden" id="wakeUnsupported">This browser can't keep the screen awake. On Android, set the display's own screen-timeout to a long value instead.</p>
 </div>
 
@@ -107,15 +113,19 @@
 <!-- ================= RECEIVER ================= -->
 <div class="card hidden" id="receiverCard">
   <h2>Receiver — wait for audio</h2>
-  <label for="roomReceiver">This device's connection code</label>
-  <input id="roomReceiver" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. living-room">
-  <p class="hint">Pick a short, memorable code. On the sender, type this exact code to connect. It's saved for next time.</p>
+  <div class="fields">
+    <div class="field">
+      <label for="roomReceiver">This device's connection code</label>
+      <input id="roomReceiver" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. living-room">
+    </div>
+    <div class="field">
+      <label for="recvPassword">Require a password <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+      <input id="recvPassword" type="password" autocomplete="new-password" placeholder="blank = none">
+    </div>
+  </div>
+  <p class="hint">Pick a short, memorable code (saved for next time). If you set a password, only senders who enter it can connect.</p>
 
   <div class="code-display" id="roomShow">—</div>
-
-  <label for="recvPassword">Require a password <span style="color:var(--muted);font-weight:400">(optional)</span></label>
-  <input id="recvPassword" type="password" autocomplete="new-password" placeholder="leave blank for no password">
-  <p class="hint">If set, only senders who enter this exact password can connect. Saved on this device.</p>
 
   <div class="row">
     <button id="btnListen" class="good">▶ Start listening</button>
@@ -131,41 +141,44 @@
 <!-- ================= SENDER ================= -->
 <div class="card hidden" id="senderCard">
   <h2>Sender — stream audio</h2>
-
-  <label for="audioSrc">Audio source</label>
-  <select id="audioSrc">
-    <option value="mic">Microphone</option>
-    <option value="system">System / tab audio (what's playing on this device)</option>
-  </select>
-
-  <label for="bitrate">Streaming quality</label>
-  <select id="bitrate">
-    <option value="0">Auto (let WebRTC decide)</option>
-    <option value="32000">Voice — 32 kbps</option>
-    <option value="64000">Standard — 64 kbps</option>
-    <option value="128000">High — 128 kbps (music)</option>
-    <option value="256000">Max — 256 kbps</option>
-  </select>
-
-  <label for="roomSender">Receiver's connection code</label>
-  <input id="roomSender" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="the code shown on the receiver">
-  <p class="hint">Type the exact code shown on the receiving device.</p>
-
-  <label for="sendPassword">Password <span style="color:var(--muted);font-weight:400">(if the receiver requires one)</span></label>
-  <input id="sendPassword" type="password" autocomplete="new-password" placeholder="leave blank if none">
-
-  <div class="chk">
-    <input type="checkbox" id="autoConnect">
-    <label for="autoConnect">Auto-connect to this code when the page opens</label>
+  <div class="fields">
+    <div class="field">
+      <label for="audioSrc">Audio source</label>
+      <select id="audioSrc">
+        <option value="mic">Microphone</option>
+        <option value="system">System / tab audio</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="bitrate">Streaming quality</label>
+      <select id="bitrate">
+        <option value="0">Auto</option>
+        <option value="32000">Voice — 32 kbps</option>
+        <option value="64000">Standard — 64 kbps</option>
+        <option value="128000">High — 128 kbps</option>
+        <option value="256000">Max — 256 kbps</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="roomSender">Receiver's connection code</label>
+      <input id="roomSender" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="code shown on the receiver">
+    </div>
+    <div class="field">
+      <label for="sendPassword">Password <span style="color:var(--muted);font-weight:400">(if required)</span></label>
+      <input id="sendPassword" type="password" autocomplete="new-password" placeholder="leave blank if none">
+    </div>
+    <div class="field wide">
+      <div class="chk"><input type="checkbox" id="autoConnect"><label for="autoConnect">Auto-connect to this code when the page opens</label></div>
+    </div>
   </div>
 
-  <div class="row" style="margin-top:10px">
+  <div class="row" style="margin-top:8px">
     <button id="btnConnect" class="good">📡 Connect &amp; stream</button>
     <button id="btnStopSend" class="danger hidden">■ Stop</button>
   </div>
 
   <div class="meter"><span id="levelBar"></span></div>
-  <p class="hint" id="sendHint">For <b>system / tab audio</b> in Chrome/Edge: pick the tab or screen, and be sure to tick <b>“Share tab audio”</b> / <b>“Share system audio”</b> in the dialog.</p>
+  <p class="hint" id="sendHint">For <b>system / tab audio</b> in Chrome/Edge, tick <b>“Share tab/system audio”</b> in the dialog. High/Max quality (128–256 kbps) is better for music.</p>
 </div>
 
 <div class="card">

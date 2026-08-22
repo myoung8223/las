@@ -26,7 +26,7 @@ WebRTC needs a brief "introduction" step (called signaling) before the two devic
 - **Keep screen awake** — an optional toggle that stops the screen from sleeping while the app is in the foreground.
 - **Background audio** — a Media Session integration keeps audio playing when the app is minimized on Android, with a play/pause/stop control in the notification shade.
 - **Optional password** — the receiver can require a password, so only senders who enter it can connect. Useful in shared settings such as a classroom, to stop an unauthorized device from connecting to the display.
-- **Compact interface** — a small, single-column layout that stays out of the way.
+- **Compact, responsive layout** — controls arrange into two columns on a wider window (and landscape displays) to save vertical space, and collapse to a single column on a narrow phone.
 - **Streaming quality control** — the sender can choose the audio bitrate (Auto, or 32 / 64 / 128 / 256 kbps). Higher settings enable stereo and are better for music; lower settings save bandwidth for voice. This is a sender-side setting and is applied to the live connection.
 
 ---
