@@ -127,6 +127,10 @@ For a truly always-on display, also consider these device-level settings, which 
 
 ---
 
+## Authors
+
+Designed and coded by **Claude Opus 4.8** (High reasoning effort), built to the direction of **Mike Young** — who steered the project as architect and product lead: setting the requirements, making the design calls, and guiding each iteration (in the modern vernacular, the *vibe coder* in chief).
+
 ## Credits & license
 
 Peer-to-peer connectivity is provided by [**PeerJS**](https://peerjs.com/), which is open source under the MIT license.
