@@ -25,15 +25,15 @@
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
     background:var(--bg); color:var(--text);
     line-height:1.4; -webkit-text-size-adjust:100%; font-size:14px;
-    padding:12px; max-width:400px; margin:0 auto;
+    padding:9px; max-width:380px; margin:0 auto;
   }
-  h1{font-size:1.05rem;margin:0 0 1px}
-  .sub{color:var(--muted);font-size:.8rem;margin:0 0 10px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:11px 12px;margin:0 0 10px}
-  .card h2{font-size:.72rem;margin:0 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
-  label{display:block;font-size:.78rem;color:var(--muted);margin:9px 0 4px}
+  h1{font-size:1rem;margin:0 0 1px}
+  .sub{color:var(--muted);font-size:.78rem;margin:0 0 7px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:8px 11px;margin:0 0 7px}
+  .card h2{font-size:.72rem;margin:0 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  label{display:block;font-size:.76rem;color:var(--muted);margin:7px 0 3px}
   input,select{
-    width:100%;padding:9px 11px;font-size:.92rem;border-radius:9px;
+    width:100%;padding:7px 10px;font-size:.9rem;border-radius:8px;
     border:1px solid var(--line);background:var(--panel2);color:var(--text);
   }
   input:focus,select:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent)}
@@ -41,7 +41,7 @@
   .row>*{flex:1 1 0;min-width:110px}
   button{
     -webkit-appearance:none;appearance:none;cursor:pointer;
-    padding:10px 14px;font-size:.92rem;font-weight:600;border-radius:9px;
+    padding:9px 13px;font-size:.9rem;font-weight:600;border-radius:8px;
     border:1px solid transparent;background:var(--accent);color:#fff;width:100%;
     transition:filter .15s,opacity .15s;
   }
@@ -52,7 +52,7 @@
   button.danger{background:var(--danger)}
   button.good{background:var(--accent2)}
   .role-pick{display:flex;gap:8px}
-  .role-pick button{padding:13px 10px;font-size:.9rem;display:flex;flex-direction:column;gap:3px;align-items:center;background:var(--panel2);border:1px solid var(--line);color:var(--text);line-height:1.2}
+  .role-pick button{padding:10px 10px;font-size:.9rem;display:flex;flex-direction:column;gap:3px;align-items:center;background:var(--panel2);border:1px solid var(--line);color:var(--text);line-height:1.2}
   .role-pick button .big{font-size:1.25rem}
   .role-pick button.active{border-color:var(--accent);background:#16233b}
   .hidden{display:none!important}
@@ -62,11 +62,11 @@
   .dot.live{background:var(--accent2)}
   .dot.err{background:var(--danger)}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  .code-display{font-size:1.4rem;font-weight:800;letter-spacing:.03em;text-align:center;
-    background:var(--panel2);border:1px dashed var(--accent);border-radius:9px;padding:9px;margin:7px 0;word-break:break-all}
-  .hint{font-size:.75rem;color:var(--muted);margin:6px 0 0}
+  .code-display{font-size:1.3rem;font-weight:800;letter-spacing:.03em;text-align:center;
+    background:var(--panel2);border:1px dashed var(--accent);border-radius:8px;padding:7px;margin:6px 0;word-break:break-all}
+  .hint{font-size:.73rem;color:var(--muted);margin:5px 0 0}
   .hint code{background:var(--panel2);padding:1px 5px;border-radius:5px;color:var(--text)}
-  .meter{height:8px;background:var(--panel2);border-radius:5px;overflow:hidden;margin-top:9px}
+  .meter{height:7px;background:var(--panel2);border-radius:5px;overflow:hidden;margin-top:7px}
   .meter>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent2),var(--warn),var(--danger));transition:width .06s linear}
   .kv{display:flex;justify-content:space-between;gap:10px;font-size:.84rem;padding:3px 0;border-bottom:1px solid var(--line)}
   .kv:last-child{border-bottom:0}
@@ -76,8 +76,8 @@
   .toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#000;color:#fff;
     padding:9px 14px;border-radius:8px;font-size:.82rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50;border:1px solid var(--line)}
   .toast.show{opacity:.95}
-  audio{width:100%;margin-top:8px;height:34px}
-  .chk{display:flex;align-items:center;gap:7px;margin-top:9px}
+  audio{width:100%;margin-top:6px;height:32px}
+  .chk{display:flex;align-items:center;gap:7px;margin-top:7px}
   .chk input{width:auto}
   .chk label{margin:0;font-size:.82rem}
   a{color:var(--accent)}
@@ -138,6 +138,15 @@
     <option value="system">System / tab audio (what's playing on this device)</option>
   </select>
 
+  <label for="bitrate">Streaming quality</label>
+  <select id="bitrate">
+    <option value="0">Auto (let WebRTC decide)</option>
+    <option value="32000">Voice — 32 kbps</option>
+    <option value="64000">Standard — 64 kbps</option>
+    <option value="128000">High — 128 kbps (music)</option>
+    <option value="256000">Max — 256 kbps</option>
+  </select>
+
   <label for="roomSender">Receiver's connection code</label>
   <input id="roomSender" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="the code shown on the receiver">
   <p class="hint">Type the exact code shown on the receiving device.</p>
@@ -150,7 +159,7 @@
     <label for="autoConnect">Auto-connect to this code when the page opens</label>
   </div>
 
-  <div class="row" style="margin-top:14px">
+  <div class="row" style="margin-top:10px">
     <button id="btnConnect" class="good">📡 Connect &amp; stream</button>
     <button id="btnStopSend" class="danger hidden">■ Stop</button>
   </div>
@@ -174,8 +183,6 @@
     <p class="hint">A code that won't connect is almost always: the two devices used different codes, the receiver isn't running, or one device has no internet for the handshake. Codes are namespaced automatically to avoid clashes.</p>
   </details>
 </div>
-
-<p class="sub" style="text-align:center">Everything runs in this one page. No app to install.</p>
 
 <div class="toast" id="toast"></div>
 
@@ -226,8 +233,45 @@
   // ---------- shared peer state ----------
   var peer=null, activeCall=null, localStream=null, audioCtx=null, meterRAF=null, role=null;
   var reconnectTimer=null;
+  var senderActive=false;     // sender: user wants to be streaming (drives auto-reconnect)
+  var recvIdRetries=0;        // receiver: retries when the code id is briefly still held
   var authToken="";           // sender: hashed proof sent with the call
   var receiverPassword="";    // receiver: required password (raw, this device only)
+  var maxBitrate=0;           // sender: audio bitrate cap in bps (0 = auto)
+
+  // ---------- bitrate control (sender side, independently configurable) ----------
+  function tuneOpus(sdp, bps){
+    try{
+      var m = sdp.match(/a=rtpmap:(\d+) opus\/48000/i);
+      if(!m) return sdp;
+      var pt = m[1];
+      var extra = "stereo=1;sprop-stereo=1;maxaveragebitrate="+bps+";maxplaybackrate=48000";
+      var fmtpRe = new RegExp("a=fmtp:"+pt+" ([^\\r\\n]*)");
+      if(fmtpRe.test(sdp)){
+        sdp = sdp.replace(fmtpRe, function(all, params){
+          var cleaned = params.replace(/;?\s*(stereo|sprop-stereo|maxaveragebitrate|maxplaybackrate)=[^;]*/gi,"").replace(/^;|;$/g,"");
+          return "a=fmtp:"+pt+" "+(cleaned?cleaned+";":"")+extra;
+        });
+      } else {
+        sdp = sdp.replace(new RegExp("(a=rtpmap:"+pt+" opus/48000[^\\r\\n]*)"), "$1\r\na=fmtp:"+pt+" "+extra);
+      }
+      return sdp;
+    }catch(e){ return sdp; }
+  }
+  function applyBitrate(pc){
+    if(!pc) return;
+    try{
+      pc.getSenders().forEach(function(s){
+        if(s.track && s.track.kind==="audio"){
+          var p = s.getParameters();
+          if(!p.encodings || !p.encodings.length){ p.encodings=[{}]; }
+          if(maxBitrate>0){ p.encodings[0].maxBitrate = maxBitrate; }
+          else { delete p.encodings[0].maxBitrate; }
+          s.setParameters(p).catch(function(){});
+        }
+      });
+    }catch(e){}
+  }
 
   // ---------- auth token (SHA-256 of code+password; falls back on insecure origins) ----------
   async function computeToken(code, pw){
@@ -259,6 +303,7 @@
   }
 
   function destroyPeer(){
+    senderActive=false;
     if(reconnectTimer){ clearTimeout(reconnectTimer); reconnectTimer=null; }
     try{ if(activeCall) activeCall.close(); }catch(e){}
     try{ if(peer) peer.destroy(); }catch(e){}
@@ -318,8 +363,11 @@
     var a=$("remoteAudio"); try{ a.muted=false; a.play().catch(function(){}); }catch(e){}
 
     peer = new Peer(PREFIX+code, peerOptions());
+    var thisPeer = peer;   // ignore events from superseded peers during reclaim/retry
 
     peer.on("open", function(){
+      if(peer!==thisPeer) return;
+      recvIdRetries = 0;   // successfully registered — reset reclaim counter
       setStatus("wait","Waiting for a sender… (code: "+code+")");
       $("btnListen").classList.add("hidden");
       $("btnStopRecv").classList.remove("hidden");
@@ -331,6 +379,20 @@
       activeCall = call;
       call.answer();
       setStatus("wait","Sender connecting…");
+      // If this connection later fails/drops, return to a clean waiting state so
+      // the sender's automatic reconnect is accepted fresh.
+      var pcWatch=setInterval(function(){
+        var pc = call.peerConnection;
+        if(pc){
+          var st = pc.connectionState || pc.iceConnectionState;
+          if(st==="failed" || st==="disconnected" || st==="closed"){
+            clearInterval(pcWatch);
+            setStatus("wait","Connection lost — waiting for sender…");
+            $("remoteAudio").srcObject=null; clearMediaSession();
+            try{ call.close(); }catch(e){}
+          }
+        }
+      }, 1500);
       call.on("stream", function(remote){
         var au=$("remoteAudio");
         au.srcObject = remote;
@@ -350,14 +412,16 @@
         });
       });
       call.on("close", function(){
+        clearInterval(pcWatch);
         setStatus("wait","Sender disconnected — waiting again");
         $("remoteAudio").srcObject=null;
         clearMediaSession();
       });
-      call.on("error", function(){ setStatus("err","Call error"); });
+      call.on("error", function(){ clearInterval(pcWatch); setStatus("err","Call error"); });
     }
 
     peer.on("call", function(call){
+      if(peer!==thisPeer) return;
       if(receiverPassword){
         computeToken(code, receiverPassword).then(function(expected){
           var provided = (call.metadata && call.metadata.auth) || "";
@@ -375,14 +439,22 @@
     });
 
     peer.on("disconnected", function(){
+      if(peer!==thisPeer) return;
       setStatus("wait","Reconnecting to signaling…");
       try{ peer.reconnect(); }catch(e){}
     });
     peer.on("error", function(err){
+      if(peer!==thisPeer) return;
       if(err && err.type==="unavailable-id"){
-        setStatus("err","That code is already in use — pick another");
-        toast("Code in use — try a different one");
-        stopReceiver();
+        // The code may just be briefly held by our own closing session — reclaim it.
+        if(recvIdRetries < 6){
+          recvIdRetries++;
+          setStatus("wait","Reclaiming code… ("+recvIdRetries+")");
+          reconnectTimer = setTimeout(startReceiver, 2500);
+        } else {
+          setStatus("err","That code is already in use — pick another, or wait a moment and retry.");
+          toast("Code in use — try again shortly");
+        }
       } else {
         setStatus("err","Signaling error: "+(err&&err.type||"unknown"));
       }
@@ -421,7 +493,8 @@
     $("roomSender").value = code;
     var kind = $("audioSrc").value;
     var pw = $("sendPassword").value || "";
-    saveSettings({role:"sender", room:code, audioSrc:kind, autoConnect:$("autoConnect").checked, sendPassword:pw});
+    maxBitrate = parseInt($("bitrate").value,10) || 0;
+    saveSettings({role:"sender", room:code, audioSrc:kind, autoConnect:$("autoConnect").checked, sendPassword:pw, bitrate:maxBitrate});
 
     destroyPeer();
     setStatus("wait","Getting audio source…");
@@ -434,44 +507,69 @@
       setStatus("wait","Connecting to "+code+"…");
       peer = new Peer(peerOptions());
 
-      var attempts=0;
+      var attempts=0, everConnected=false;
       var callWatch=null, callGiveUp=null;
       function clearCallTimers(){ if(callWatch){clearInterval(callWatch);callWatch=null;} if(callGiveUp){clearTimeout(callGiveUp);callGiveUp=null;} }
+      function scheduleReconnect(msg){
+        if(!senderActive) return;
+        setStatus("wait", msg);
+        if(reconnectTimer){ clearTimeout(reconnectTimer); }
+        reconnectTimer = setTimeout(function(){
+          if(!senderActive) return;
+          if(peer && peer.disconnected){ try{ peer.reconnect(); }catch(e){} }
+          placeCall();
+        }, 2000);
+      }
       function placeCall(){
         clearCallTimers();
-        activeCall = peer.call(PREFIX+code, localStream, { metadata:{ auth: authToken } });
+        if(!peer || peer.destroyed){ return; }
+        var callOpts = { metadata:{ auth: authToken } };
+        if(maxBitrate>0){ callOpts.sdpTransform = function(sdp){ return tuneOpus(sdp, maxBitrate); }; }
+        activeCall = peer.call(PREFIX+code, localStream, callOpts);
         if(!activeCall){ setStatus("err","Could not start call"); return; }
         var settled=false;
         function markConnected(){
-          if(settled) return; settled=true; clearCallTimers();
+          if(settled) return; settled=true; everConnected=true; attempts=0; clearCallTimers();
+          applyBitrate(activeCall && activeCall.peerConnection);
           setStatus("live","● Streaming ("+srcLabel+")");
         }
-        // Only report success once the peer connection is actually established.
-        // A blocked/refused call never reaches "connected".
+        // Report success only once the peer connection is actually established.
+        // If an established connection later drops, reconnect automatically —
+        // this recovers from the stream cutting out (e.g. the display sleeping).
         callWatch=setInterval(function(){
           var pc = activeCall && activeCall.peerConnection;
           if(pc){
             var st = pc.connectionState || pc.iceConnectionState;
             if(st==="connected" || st==="completed"){ markConnected(); }
+            else if(settled && (st==="failed" || st==="disconnected" || st==="closed")){
+              clearCallTimers();
+              scheduleReconnect("Connection dropped — reconnecting…");
+            }
           }
-        }, 300);
+        }, 500);
         callGiveUp=setTimeout(function(){
           if(!settled){
             clearCallTimers();
-            setStatus("err","No connection — wrong password, or the receiver isn't listening on “"+code+"”.");
+            if(everConnected){ scheduleReconnect("Reconnecting…"); }
+            else { setStatus("err","No connection — wrong password, or the receiver isn't listening on “"+code+"”."); }
           }
         }, 9000);
         activeCall.on("stream", function(){ /* one-way; ignore inbound */ });
         activeCall.on("close", function(){
           clearCallTimers();
-          if(!settled){ setStatus("err","Refused by receiver — check the password."); }
-          else { setStatus("wait","Receiver disconnected"); }
+          if(settled){ scheduleReconnect("Receiver dropped — reconnecting…"); }
+          else { setStatus("err","Refused by receiver — check the password."); }
         });
-        activeCall.on("error", function(){ clearCallTimers(); setStatus("err","Call error"); });
+        activeCall.on("error", function(){
+          clearCallTimers();
+          if(settled){ scheduleReconnect("Call error — reconnecting…"); }
+          else { setStatus("err","Call error"); }
+        });
         // If the receiver isn't there at all, peer 'error' (peer-unavailable) fires; we retry.
       }
 
       peer.on("open", function(){
+        senderActive = true;
         placeCall();
         setStatus("wait","Connecting…");
         $("btnConnect").classList.add("hidden");
@@ -482,7 +580,10 @@
         var type = err && err.type;
         if(type==="peer-unavailable"){
           attempts++;
-          if(attempts<=20){
+          if(everConnected){
+            setStatus("wait","Receiver offline — reconnecting…");
+            reconnectTimer = setTimeout(placeCall, 2500);
+          } else if(attempts<=20){
             setStatus("wait","Receiver not online yet — retrying ("+attempts+")…");
             reconnectTimer = setTimeout(placeCall, 2000);
           } else {
@@ -547,7 +648,7 @@
   $("pickSender").onclick = function(){ showRole("sender"); saveSettings({role:"sender"}); };
   $("pickReceiver").onclick = function(){ showRole("receiver"); saveSettings({role:"receiver"}); };
 
-  $("btnListen").onclick = startReceiver;
+  $("btnListen").onclick = function(){ recvIdRetries = 0; startReceiver(); };
   $("btnStopRecv").onclick = stopReceiver;
   $("btnConnect").onclick = startSender;
   $("btnStopSend").onclick = stopSender;
@@ -597,6 +698,7 @@
     if(settings.autoConnect){ $("autoConnect").checked=true; }
     if(settings.recvPassword){ $("recvPassword").value=settings.recvPassword; receiverPassword=settings.recvPassword; }
     if(settings.sendPassword){ $("sendPassword").value=settings.sendPassword; }
+    if(settings.bitrate!=null){ $("bitrate").value=String(settings.bitrate); maxBitrate=settings.bitrate; }
     if(settings.keepAwake && wakeSupported){
       $("wakeToggle").checked=true; wakeWanted=true; acquireWake();
       var grab=function(){ acquireWake(); document.removeEventListener("click", grab); };
@@ -609,6 +711,11 @@
       });
     });
     $("audioSrc").addEventListener("change", function(){ saveSettings({audioSrc:this.value}); });
+    $("bitrate").addEventListener("change", function(){
+      maxBitrate = parseInt(this.value,10) || 0;
+      saveSettings({bitrate:maxBitrate});
+      if(activeCall && activeCall.peerConnection){ applyBitrate(activeCall.peerConnection); }
+    });
     $("autoConnect").addEventListener("change", function(){ saveSettings({autoConnect:this.checked}); });
     $("recvPassword").addEventListener("change", function(){ receiverPassword=this.value||""; saveSettings({recvPassword:receiverPassword}); });
     $("sendPassword").addEventListener("change", function(){ saveSettings({sendPassword:this.value||""}); });

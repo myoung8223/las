@@ -27,6 +27,7 @@ WebRTC needs a brief "introduction" step (called signaling) before the two devic
 - **Background audio** — a Media Session integration keeps audio playing when the app is minimized on Android, with a play/pause/stop control in the notification shade.
 - **Optional password** — the receiver can require a password, so only senders who enter it can connect. Useful in shared settings such as a classroom, to stop an unauthorized device from connecting to the display.
 - **Compact interface** — a small, single-column layout that stays out of the way.
+- **Streaming quality control** — the sender can choose the audio bitrate (Auto, or 32 / 64 / 128 / 256 kbps). Higher settings enable stereo and are better for music; lower settings save bandwidth for voice. This is a sender-side setting and is applied to the live connection.
 
 ---
 
@@ -111,6 +112,16 @@ For a truly always-on display, also consider these device-level settings, which 
 - If background audio ever drops, exempt the app (or the browser) from **battery optimization** in Android settings.
 
 ---
+
+## Troubleshooting
+
+**Audio cuts out after a minute or two.** The most common cause is the display's screen turning off — many Android devices default to a 1–2 minute screen timeout, and when the screen sleeps the audio can be suspended. Fixes, in order:
+
+1. Turn on **Keep screen awake** in the app (works while the app is in the foreground).
+2. Increase the device's **screen timeout** (or enable **Stay awake while charging** in Developer Options for a plugged-in display).
+3. Exempt the browser/PWA from **battery optimization** in Android settings, so the system doesn't suspend it in the background.
+
+The app also **auto-reconnects**: if an established stream drops for any reason, the sender keeps trying and re-establishes the connection automatically once the receiver is reachable again, so brief interruptions recover on their own.
 
 ## Privacy & data
 
