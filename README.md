@@ -25,6 +25,8 @@ WebRTC needs a brief "introduction" step (called signaling) before the two devic
 - **Installable PWA** — add it to the home screen; launches full-screen like a native app and works offline after the first load (the pairing handshake still needs internet).
 - **Keep screen awake** — an optional toggle that stops the screen from sleeping while the app is in the foreground.
 - **Background audio** — a Media Session integration keeps audio playing when the app is minimized on Android, with a play/pause/stop control in the notification shade.
+- **Optional password** — the receiver can require a password, so only senders who enter it can connect. Useful in shared settings such as a classroom, to stop an unauthorized device from connecting to the display.
+- **Compact interface** — a small, single-column layout that stays out of the way.
 
 ---
 
@@ -79,6 +81,15 @@ HTTPS is automatic on `github.io`, which is required both for PWA installation a
 
 Turn on **Auto-connect** on the sender to have it reconnect to the saved code automatically the next time the page opens.
 
+### Password protection
+
+To stop an unauthorized device (for example, a student who discovers the app) from connecting to the display:
+
+1. On the **receiver**, set a value in **Require a password**. It is saved on that device, so you only set it once.
+2. On the **sender**, enter the **same password**. Senders that supply the wrong password — or none — are refused, and no audio ever reaches the display.
+
+The password is combined with the connection code and hashed (SHA-256) before being sent, so it is not transmitted in plain text during pairing. This is meant as practical prank-prevention for a shared environment, not high-security access control. The password is stored locally on each device (in the browser's local storage) so it persists between uses.
+
 ---
 
 ## Install as an app (PWA)
@@ -129,7 +140,7 @@ For a truly always-on display, also consider these device-level settings, which 
 
 ## Authors
 
-This solution was designed and programmed by **Claude Opus 4.8** (High reasoning effort), built at the direction of **Mike Young** — who steered the project: setting the requirements, making the design calls, and testing each iteration.
+Designed and coded by **Claude Opus 4.8** (High reasoning effort), built to the direction of **Mike Young** — who steered the project as architect and product lead: setting the requirements, making the design calls, and guiding each iteration (in the modern vernacular, the *vibe coder* in chief).
 
 ## Credits & license
 
