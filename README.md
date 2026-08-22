@@ -129,7 +129,7 @@ For a truly always-on display, also consider these device-level settings, which 
 
 ## Authors
 
-Designed and coded by **Claude Opus 4.8** (High reasoning effort), built to the direction of **Mike Young** — who steered the project as architect and product lead: setting the requirements, making the design calls, and guiding each iteration (in the modern vernacular, the *vibe coder* in chief).
+In the interest of avoiding stolen programming valor, this solution was designed and coded by **Claude Opus 4.8** (High reasoning effort), built to the direction of **Mike Young** — who steered the project: setting the requirements, making the design calls, and testing each iteration.
 
 ## Credits & license
 
