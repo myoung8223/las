@@ -190,6 +190,8 @@
   <button class="ghost" id="btnReset">↺ Change role / reset this device</button>
   <details>
     <summary>Advanced &amp; troubleshooting</summary>
+    <div class="chk"><input type="checkbox" id="lanOnly" checked><label for="lanOnly">LAN-only (disable STUN) — blocks connections from outside the local network</label></div>
+    <p class="hint">On by default. Leave it on for local use; turn it off only if you want to connect two devices across the internet (which then relies on the router allowing it).</p>
     <p class="hint">Pairing uses the free public PeerJS rendezvous service (needs internet for the initial handshake only — the audio itself stays peer-to-peer on your LAN). You can point to your own PeerJS server below if you run one.</p>
     <label for="signalHost">Custom signaling host (optional)</label>
     <input id="signalHost" autocomplete="off" placeholder="leave blank to use the public service">
@@ -306,7 +308,10 @@
   }
 
   function peerOptions(){
-    var opt = { debug: 1, config: { iceServers: [
+    // LAN-only (default): no STUN, so only local network candidates are gathered
+    // and a connection can't form with a device outside the local network.
+    var lanOnly = $("lanOnly") ? $("lanOnly").checked : true;
+    var opt = { debug: 1, config: { iceServers: lanOnly ? [] : [
       {urls:"stun:stun.l.google.com:19302"},
       {urls:"stun:global.stun.twilio.com:3478"}
     ]}};
@@ -717,6 +722,7 @@
     if(settings.recvPassword){ $("recvPassword").value=settings.recvPassword; receiverPassword=settings.recvPassword; }
     if(settings.sendPassword){ $("sendPassword").value=settings.sendPassword; }
     if(settings.bitrate!=null){ $("bitrate").value=String(settings.bitrate); maxBitrate=settings.bitrate; }
+    if(settings.lanOnly===false){ $("lanOnly").checked=false; }   // default is ON (LAN-only)
     if(settings.keepAwake && wakeSupported){
       $("wakeToggle").checked=true; wakeWanted=true; acquireWake();
       var grab=function(){ acquireWake(); document.removeEventListener("click", grab); };
@@ -729,6 +735,7 @@
       });
     });
     $("audioSrc").addEventListener("change", function(){ saveSettings({audioSrc:this.value}); });
+    $("lanOnly").addEventListener("change", function(){ saveSettings({lanOnly:this.checked}); });
     $("bitrate").addEventListener("change", function(){
       maxBitrate = parseInt(this.value,10) || 0;
       saveSettings({bitrate:maxBitrate});

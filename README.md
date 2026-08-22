@@ -29,6 +29,7 @@ WebRTC needs a brief "introduction" step (called signaling) before the two devic
 - **Optional password** — the receiver can require a password, so only senders who enter it can connect. Useful in shared settings such as a classroom, to stop an unauthorized device from connecting to the display.
 - **Compact, responsive layout** — controls arrange into two columns on a wider window (and landscape displays) to save vertical space, and collapse to a single column on a narrow phone.
 - **Streaming quality control** — the sender can choose the audio bitrate (Auto, or 32 / 64 / 128 / 256 kbps). Higher settings enable stereo and are better for music; lower settings save bandwidth for voice. This is a sender-side setting and is applied to the live connection.
+- **LAN-only by default** — STUN is disabled, so each device only gathers **local-network** address candidates. A connection can only form between devices that can reach each other on the LAN; an off-network device never obtains a usable path. A toggle in *Advanced* turns STUN back on if you ever want to connect two devices across the internet.
 
 ---
 
@@ -135,7 +136,8 @@ The app also **auto-reconnects**: if an established stream drops for any reason,
 ## Privacy & data
 
 - The **audio stream is peer-to-peer and encrypted** (WebRTC uses DTLS/SRTP) and never touches a third-party server.
-- During the brief pairing handshake, the connection codes and the devices' network addresses pass through the public PeerJS rendezvous service. After pairing, nothing does.
+- **Media stays on the local network.** With LAN-only mode on (the default), no STUN is used, so only local-network addresses are exchanged and the audio cannot traverse the internet. (Turning STUN on in *Advanced* would allow an internet path where NAT permits.)
+- During the brief pairing handshake, the connection code (and, with STUN enabled, the devices' network addresses) passes through the public PeerJS rendezvous service. After pairing, nothing does.
 - Nothing is stored remotely. Saved settings (including any password) live only in the browser's local storage on each device.
 
 ---
@@ -161,7 +163,7 @@ The app also **auto-reconnects**: if an established stream drops for any reason,
 
 ## Authors
 
-Designed and programmed by **Claude Opus 4.8** (High reasoning effort), built at the direction of **Mike Young** — who steered the project, setting the requirements, making the design calls, and guiding and testing each iteration.
+Designed and coded by **Claude Opus 4.8** (High reasoning effort), built to the direction of **Mike Young** — who steered the project as architect and product lead: setting the requirements, making the design calls, and guiding each iteration (in the modern vernacular, the *vibe coder* in chief).
 
 ## Credits & license
 
