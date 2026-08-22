@@ -21,10 +21,11 @@ WebRTC needs a brief "introduction" step (called signaling) before the two devic
 - **One page, two roles** — each device chooses to be a **sender** or a **receiver**.
 - **Easy code-based pairing** — no IP addresses to type; connect with a short memorable code.
 - **Sender audio source** — stream the **microphone** or **system / tab audio** (what's playing on the device).
-- **Saved settings** — role, connection code, audio source, and an *auto-connect on open* option persist between sessions.
+- **Saved settings** — role, connection code, audio source, streaming quality, password, and an *auto-connect on open* option persist between sessions.
 - **Installable PWA** — add it to the home screen; launches full-screen like a native app and works offline after the first load (the pairing handshake still needs internet).
 - **Keep screen awake** — an optional toggle that stops the screen from sleeping while the app is in the foreground.
 - **Background audio** — a Media Session integration keeps audio playing when the app is minimized on Android, with a play/pause/stop control in the notification shade.
+- **Resilient auto-reconnect** — if an established stream drops (a network blip, or the display waking from sleep), the sender detects it and re-establishes the connection automatically, so brief interruptions recover on their own.
 - **Optional password** — the receiver can require a password, so only senders who enter it can connect. Useful in shared settings such as a classroom, to stop an unauthorized device from connecting to the display.
 - **Compact, responsive layout** — controls arrange into two columns on a wider window (and landscape displays) to save vertical space, and collapse to a single column on a narrow phone.
 - **Streaming quality control** — the sender can choose the audio bitrate (Auto, or 32 / 64 / 128 / 256 kbps). Higher settings enable stereo and are better for music; lower settings save bandwidth for voice. This is a sender-side setting and is applied to the live connection.
@@ -58,7 +59,7 @@ Everything is static. There is no build step and no backend.
 
 HTTPS is automatic on `github.io`, which is required both for PWA installation and for microphone / system-audio capture.
 
-> When you update the app, re-upload the changed files and bump the `CACHE` version string in `sw.js` (e.g. `...-v3` → `...-v4`) so already-installed copies refresh automatically.
+> When you update the app, re-upload the changed files and bump the `CACHE` version string in `sw.js` (e.g. `...-v8` → `...-v9`) so already-installed copies refresh automatically.
 
 ---
 
@@ -74,11 +75,11 @@ HTTPS is automatic on `github.io`, which is required both for PWA installation a
 **On the sending device (e.g. the PC):**
 
 1. Open the app and choose **Send audio**.
-2. Pick the audio source: **Microphone** or **System / tab audio**.
+2. Pick the audio source: **Microphone** or **System / tab audio**, and (optionally) the **streaming quality**.
 3. Enter the **same code** the receiver is using.
 4. Click **Connect & stream**.
 
-> For **system / tab audio** in Chrome/Edge, remember to tick **“Share tab audio”** / **“Share system audio”** in the browser's share dialog, or no sound will be captured.
+> For **system / tab audio** in Chrome/Edge, remember to tick **“Share tab audio”** / **“Share system audio”** in the browser's share dialog, or no sound will be captured. For music, choose **High (128 kbps)** or **Max (256 kbps)** — these also enable stereo.
 
 Turn on **Auto-connect** on the sender to have it reconnect to the saved code automatically the next time the page opens.
 
@@ -96,6 +97,8 @@ The password is combined with the connection code and hashed (SHA-256) before be
 ## Install as an app (PWA)
 
 Open the live URL in Chrome on each device and use the **⬇ Install this app** button on the page (or the browser menu's **Install app** / **Add to Home screen**). Once installed it runs full-screen and launches from its own icon — ideal for a kiosk-style display.
+
+> **Window size:** there is no web standard for setting an installed PWA's initial window size — the browser decides it. On desktop, Chrome opens at a default size and then reopens at whatever size you last left the window, so resize it once and it sticks. On Android the app runs full-screen, so this isn't a factor there.
 
 ---
 
@@ -123,11 +126,17 @@ For a truly always-on display, also consider these device-level settings, which 
 
 The app also **auto-reconnects**: if an established stream drops for any reason, the sender keeps trying and re-establishes the connection automatically once the receiver is reachable again, so brief interruptions recover on their own.
 
+**A sender says "Refused by receiver."** The password doesn't match the one set on the receiver (or the receiver requires one and the sender left it blank). Enter the exact same password on both devices.
+
+**A sender says "No connection / receiver not listening."** The two devices are using different codes, the receiver isn't running, or a device has no internet for the handshake. Confirm the code matches and the receiver shows it's waiting.
+
+---
+
 ## Privacy & data
 
 - The **audio stream is peer-to-peer and encrypted** (WebRTC uses DTLS/SRTP) and never touches a third-party server.
 - During the brief pairing handshake, the connection codes and the devices' network addresses pass through the public PeerJS rendezvous service. After pairing, nothing does.
-- Nothing is stored remotely. Saved settings live only in the browser's local storage on each device.
+- Nothing is stored remotely. Saved settings (including any password) live only in the browser's local storage on each device.
 
 ---
 
@@ -135,6 +144,7 @@ The app also **auto-reconnects**: if an established stream drops for any reason,
 
 - **The public rendezvous service (peerjs.com) requires internet for pairing** and is a free, best-effort service with no uptime guarantee. To remove this dependency, run your own [`peerjs-server`](https://github.com/peers/peerjs-server) on your LAN and point the app's **Custom signaling host** field (under *Advanced*) at it. This keeps the easy code-based flow while staying fully local.
 - **Background audio is not guaranteed indefinitely.** A page playing audio is exempt from normal background-freezing and Media Session strengthens this, but under memory pressure or aggressive vendor battery-optimization, Android can still reclaim a backgrounded app.
+- **The password is prank-prevention, not strong security.** It stops casual/unauthorized connections on a shared network; it is not a substitute for real access control.
 - The app currently streams **one-way** (sender → receiver).
 - Best supported in **Chrome / Edge**. iOS/Safari PWA and capture support is more limited.
 
@@ -151,7 +161,7 @@ The app also **auto-reconnects**: if an established stream drops for any reason,
 
 ## Authors
 
-Designed and coded by **Claude Opus 4.8** (High reasoning effort), built to the direction of **Mike Young** — who steered the project as architect and product lead: setting the requirements, making the design calls, and guiding each iteration (in the modern vernacular, the *vibe coder* in chief).
+Designed and programmed by **Claude Opus 4.8** (High reasoning effort), built at the direction of **Mike Young** — who steered the project, setting the requirements, making the design calls, and guiding and testing each iteration.
 
 ## Credits & license
 
