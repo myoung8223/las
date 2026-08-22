@@ -129,7 +129,7 @@ For a truly always-on display, also consider these device-level settings, which 
 
 ## Authors
 
-In the interest of avoiding stolen programming valor, this solution was designed and coded by **Claude Opus 4.8** (High reasoning effort), built to the direction of **Mike Young** — who steered the project: setting the requirements, making the design calls, and testing each iteration.
+This solution was designed and programmed by **Claude Opus 4.8** (High reasoning effort), built to the direction of **Mike Young** — who steered the project: setting the requirements, making the design calls, and testing each iteration.
 
 ## Credits & license
 
