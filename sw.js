@@ -1,5 +1,5 @@
 /* LAN Audio Streamer service worker */
-const CACHE = 'lan-audio-streamer-v3';
+const CACHE = 'lan-audio-streamer-v4';
 const ASSETS = [
   './',
   './index.html',

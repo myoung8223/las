@@ -17,31 +17,31 @@
   :root{
     --bg:#0e1116; --panel:#171c24; --panel2:#1f2632; --line:#2b3442;
     --text:#e6edf5; --muted:#93a1b5; --accent:#4f8cff; --accent2:#2ecc9b;
-    --danger:#ff5c6c; --warn:#ffb454; --radius:16px;
+    --danger:#ff5c6c; --warn:#ffb454; --radius:12px;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
     background:var(--bg); color:var(--text);
-    line-height:1.5; -webkit-text-size-adjust:100%;
-    padding:16px; max-width:760px; margin:0 auto;
+    line-height:1.4; -webkit-text-size-adjust:100%; font-size:14px;
+    padding:12px; max-width:400px; margin:0 auto;
   }
-  h1{font-size:1.35rem;margin:0 0 2px}
-  .sub{color:var(--muted);font-size:.9rem;margin:0 0 16px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:0 0 14px}
-  .card h2{font-size:1rem;margin:0 0 10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
-  label{display:block;font-size:.85rem;color:var(--muted);margin:12px 0 6px}
+  h1{font-size:1.05rem;margin:0 0 1px}
+  .sub{color:var(--muted);font-size:.8rem;margin:0 0 10px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:11px 12px;margin:0 0 10px}
+  .card h2{font-size:.72rem;margin:0 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  label{display:block;font-size:.78rem;color:var(--muted);margin:9px 0 4px}
   input,select{
-    width:100%;padding:13px 14px;font-size:1rem;border-radius:12px;
+    width:100%;padding:9px 11px;font-size:.92rem;border-radius:9px;
     border:1px solid var(--line);background:var(--panel2);color:var(--text);
   }
   input:focus,select:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent)}
-  .row{display:flex;gap:10px;flex-wrap:wrap}
-  .row>*{flex:1 1 0;min-width:120px}
+  .row{display:flex;gap:8px;flex-wrap:wrap}
+  .row>*{flex:1 1 0;min-width:110px}
   button{
     -webkit-appearance:none;appearance:none;cursor:pointer;
-    padding:15px 18px;font-size:1rem;font-weight:600;border-radius:12px;
+    padding:10px 14px;font-size:.92rem;font-weight:600;border-radius:9px;
     border:1px solid transparent;background:var(--accent);color:#fff;width:100%;
     transition:filter .15s,opacity .15s;
   }
@@ -51,36 +51,35 @@
   button.ghost{background:transparent;border-color:var(--line);color:var(--text)}
   button.danger{background:var(--danger)}
   button.good{background:var(--accent2)}
-  .role-pick{display:flex;gap:12px}
-  .role-pick button{padding:22px 14px;font-size:1.05rem;display:flex;flex-direction:column;gap:6px;align-items:center;background:var(--panel2);border:1px solid var(--line);color:var(--text)}
-  .role-pick button .big{font-size:1.6rem}
+  .role-pick{display:flex;gap:8px}
+  .role-pick button{padding:13px 10px;font-size:.9rem;display:flex;flex-direction:column;gap:3px;align-items:center;background:var(--panel2);border:1px solid var(--line);color:var(--text);line-height:1.2}
+  .role-pick button .big{font-size:1.25rem}
   .role-pick button.active{border-color:var(--accent);background:#16233b}
   .hidden{display:none!important}
-  .status{display:flex;align-items:center;gap:10px;font-weight:600}
-  .dot{width:12px;height:12px;border-radius:50%;background:var(--muted);flex:0 0 auto}
+  .status{display:flex;align-items:center;gap:8px;font-weight:600}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:0 0 auto}
   .dot.wait{background:var(--warn);animation:pulse 1.2s infinite}
   .dot.live{background:var(--accent2)}
   .dot.err{background:var(--danger)}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  .code-display{font-size:2rem;font-weight:800;letter-spacing:.04em;text-align:center;
-    background:var(--panel2);border:1px dashed var(--accent);border-radius:12px;padding:16px;margin:8px 0;word-break:break-all}
-  .hint{font-size:.82rem;color:var(--muted);margin:8px 0 0}
-  .hint code{background:var(--panel2);padding:1px 6px;border-radius:6px;color:var(--text)}
-  .ipbox{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:1.05rem}
-  .meter{height:10px;background:var(--panel2);border-radius:6px;overflow:hidden;margin-top:10px}
+  .code-display{font-size:1.4rem;font-weight:800;letter-spacing:.03em;text-align:center;
+    background:var(--panel2);border:1px dashed var(--accent);border-radius:9px;padding:9px;margin:7px 0;word-break:break-all}
+  .hint{font-size:.75rem;color:var(--muted);margin:6px 0 0}
+  .hint code{background:var(--panel2);padding:1px 5px;border-radius:5px;color:var(--text)}
+  .meter{height:8px;background:var(--panel2);border-radius:5px;overflow:hidden;margin-top:9px}
   .meter>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent2),var(--warn),var(--danger));transition:width .06s linear}
-  .kv{display:flex;justify-content:space-between;gap:12px;font-size:.9rem;padding:4px 0;border-bottom:1px solid var(--line)}
+  .kv{display:flex;justify-content:space-between;gap:10px;font-size:.84rem;padding:3px 0;border-bottom:1px solid var(--line)}
   .kv:last-child{border-bottom:0}
   .kv b{font-weight:600}
-  details{margin-top:6px}
-  details summary{cursor:pointer;color:var(--muted);font-size:.88rem;padding:6px 0}
-  .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#000;color:#fff;
-    padding:10px 16px;border-radius:10px;font-size:.9rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50;border:1px solid var(--line)}
+  details{margin-top:4px}
+  details summary{cursor:pointer;color:var(--muted);font-size:.8rem;padding:5px 0}
+  .toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#000;color:#fff;
+    padding:9px 14px;border-radius:8px;font-size:.82rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50;border:1px solid var(--line)}
   .toast.show{opacity:.95}
-  audio{width:100%;margin-top:10px}
-  .chk{display:flex;align-items:center;gap:8px;margin-top:12px}
+  audio{width:100%;margin-top:8px;height:34px}
+  .chk{display:flex;align-items:center;gap:7px;margin-top:9px}
   .chk input{width:auto}
-  .chk label{margin:0}
+  .chk label{margin:0;font-size:.82rem}
   a{color:var(--accent)}
 </style>
 </head>
@@ -114,6 +113,10 @@
 
   <div class="code-display" id="roomShow">—</div>
 
+  <label for="recvPassword">Require a password <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+  <input id="recvPassword" type="password" autocomplete="new-password" placeholder="leave blank for no password">
+  <p class="hint">If set, only senders who enter this exact password can connect. Saved on this device.</p>
+
   <div class="row">
     <button id="btnListen" class="good">▶ Start listening</button>
     <button id="btnStopRecv" class="danger hidden">■ Stop</button>
@@ -138,6 +141,9 @@
   <label for="roomSender">Receiver's connection code</label>
   <input id="roomSender" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="the code shown on the receiver">
   <p class="hint">Type the exact code shown on the receiving device.</p>
+
+  <label for="sendPassword">Password <span style="color:var(--muted);font-weight:400">(if the receiver requires one)</span></label>
+  <input id="sendPassword" type="password" autocomplete="new-password" placeholder="leave blank if none">
 
   <div class="chk">
     <input type="checkbox" id="autoConnect">
@@ -220,6 +226,22 @@
   // ---------- shared peer state ----------
   var peer=null, activeCall=null, localStream=null, audioCtx=null, meterRAF=null, role=null;
   var reconnectTimer=null;
+  var authToken="";           // sender: hashed proof sent with the call
+  var receiverPassword="";    // receiver: required password (raw, this device only)
+
+  // ---------- auth token (SHA-256 of code+password; falls back on insecure origins) ----------
+  async function computeToken(code, pw){
+    if(!pw) return "";
+    var raw = code + "::" + pw;
+    try{
+      if(window.crypto && crypto.subtle){
+        var buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(raw));
+        return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,"0");}).join("");
+      }
+    }catch(e){}
+    var h=5381; for(var i=0;i<raw.length;i++){ h=((h<<5)+h+raw.charCodeAt(i))>>>0; }
+    return "f"+h.toString(16);
+  }
 
   function peerOptions(){
     var opt = { debug: 1, config: { iceServers: [
@@ -287,7 +309,8 @@
     if(!code){ toast("Enter a connection code first"); return; }
     $("roomReceiver").value = code;
     $("roomShow").textContent = code;
-    saveSettings({role:"receiver", room:code});
+    receiverPassword = $("recvPassword").value || "";
+    saveSettings({role:"receiver", room:code, recvPassword:receiverPassword});
 
     destroyPeer();
     setStatus("wait","Starting…");
@@ -302,7 +325,7 @@
       $("btnStopRecv").classList.remove("hidden");
     });
 
-    peer.on("call", function(call){
+    function acceptCall(call){
       // one-way: answer without sending a stream back
       if(activeCall){ try{activeCall.close();}catch(e){} }
       activeCall = call;
@@ -332,6 +355,23 @@
         clearMediaSession();
       });
       call.on("error", function(){ setStatus("err","Call error"); });
+    }
+
+    peer.on("call", function(call){
+      if(receiverPassword){
+        computeToken(code, receiverPassword).then(function(expected){
+          var provided = (call.metadata && call.metadata.auth) || "";
+          if(provided && provided === expected){
+            acceptCall(call);
+          } else {
+            setStatus("wait","Blocked an unauthorized sender — waiting…");
+            toast("Blocked: wrong or missing password");
+            try{ call.close(); }catch(e){}
+          }
+        });
+      } else {
+        acceptCall(call);
+      }
     });
 
     peer.on("disconnected", function(){
@@ -380,30 +420,60 @@
     if(!code){ toast("Enter the receiver's code"); return; }
     $("roomSender").value = code;
     var kind = $("audioSrc").value;
-    saveSettings({role:"sender", room:code, audioSrc:kind, autoConnect:$("autoConnect").checked});
+    var pw = $("sendPassword").value || "";
+    saveSettings({role:"sender", room:code, audioSrc:kind, autoConnect:$("autoConnect").checked, sendPassword:pw});
 
     destroyPeer();
     setStatus("wait","Getting audio source…");
+    var srcLabel = (kind==="system"?"system audio":"microphone");
 
-    getStream(kind).then(function(stream){
-      localStream = stream;
-      startMeter(stream);
+    Promise.all([ getStream(kind), computeToken(code, pw) ]).then(function(res){
+      localStream = res[0];
+      authToken = res[1];
+      startMeter(localStream);
       setStatus("wait","Connecting to "+code+"…");
       peer = new Peer(peerOptions());
 
       var attempts=0;
+      var callWatch=null, callGiveUp=null;
+      function clearCallTimers(){ if(callWatch){clearInterval(callWatch);callWatch=null;} if(callGiveUp){clearTimeout(callGiveUp);callGiveUp=null;} }
       function placeCall(){
-        activeCall = peer.call(PREFIX+code, localStream);
+        clearCallTimers();
+        activeCall = peer.call(PREFIX+code, localStream, { metadata:{ auth: authToken } });
         if(!activeCall){ setStatus("err","Could not start call"); return; }
+        var settled=false;
+        function markConnected(){
+          if(settled) return; settled=true; clearCallTimers();
+          setStatus("live","● Streaming ("+srcLabel+")");
+        }
+        // Only report success once the peer connection is actually established.
+        // A blocked/refused call never reaches "connected".
+        callWatch=setInterval(function(){
+          var pc = activeCall && activeCall.peerConnection;
+          if(pc){
+            var st = pc.connectionState || pc.iceConnectionState;
+            if(st==="connected" || st==="completed"){ markConnected(); }
+          }
+        }, 300);
+        callGiveUp=setTimeout(function(){
+          if(!settled){
+            clearCallTimers();
+            setStatus("err","No connection — wrong password, or the receiver isn't listening on “"+code+"”.");
+          }
+        }, 9000);
         activeCall.on("stream", function(){ /* one-way; ignore inbound */ });
-        activeCall.on("close", function(){ setStatus("wait","Receiver disconnected"); });
-        activeCall.on("error", function(){ setStatus("err","Call error"); });
-        // If the receiver isn't there yet, peer 'error' (peer-unavailable) fires; we retry.
+        activeCall.on("close", function(){
+          clearCallTimers();
+          if(!settled){ setStatus("err","Refused by receiver — check the password."); }
+          else { setStatus("wait","Receiver disconnected"); }
+        });
+        activeCall.on("error", function(){ clearCallTimers(); setStatus("err","Call error"); });
+        // If the receiver isn't there at all, peer 'error' (peer-unavailable) fires; we retry.
       }
 
       peer.on("open", function(){
         placeCall();
-        setStatus("live","● Streaming ("+ (kind==="system"?"system audio":"microphone") +")");
+        setStatus("wait","Connecting…");
         $("btnConnect").classList.add("hidden");
         $("btnStopSend").classList.remove("hidden");
       });
@@ -525,6 +595,8 @@
     if(settings.room){ $("roomReceiver").value=settings.room; $("roomSender").value=settings.room; $("roomShow").textContent=settings.room; }
     if(settings.audioSrc){ $("audioSrc").value=settings.audioSrc; }
     if(settings.autoConnect){ $("autoConnect").checked=true; }
+    if(settings.recvPassword){ $("recvPassword").value=settings.recvPassword; receiverPassword=settings.recvPassword; }
+    if(settings.sendPassword){ $("sendPassword").value=settings.sendPassword; }
     if(settings.keepAwake && wakeSupported){
       $("wakeToggle").checked=true; wakeWanted=true; acquireWake();
       var grab=function(){ acquireWake(); document.removeEventListener("click", grab); };
@@ -538,6 +610,8 @@
     });
     $("audioSrc").addEventListener("change", function(){ saveSettings({audioSrc:this.value}); });
     $("autoConnect").addEventListener("change", function(){ saveSettings({autoConnect:this.checked}); });
+    $("recvPassword").addEventListener("change", function(){ receiverPassword=this.value||""; saveSettings({recvPassword:receiverPassword}); });
+    $("sendPassword").addEventListener("change", function(){ saveSettings({sendPassword:this.value||""}); });
 
     if(settings.role){
       showRole(settings.role);
