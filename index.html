@@ -75,6 +75,11 @@
   .kv{display:flex;justify-content:space-between;gap:10px;font-size:.84rem;padding:3px 0;border-bottom:1px solid var(--line)}
   .kv:last-child{border-bottom:0}
   .kv b{font-weight:600}
+  .statusrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .conn{color:var(--muted);font-size:.84rem;display:inline-flex;align-items:center;gap:8px}
+  .conn .status{color:var(--text)}
+  .wake{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--text);white-space:nowrap;cursor:pointer;margin-left:auto}
+  .wake input{width:auto;margin:0;flex:0 0 auto}
   details{margin-top:4px}
   details summary{cursor:pointer;color:var(--muted);font-size:.8rem;padding:5px 0}
   .toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);background:#000;color:#fff;
@@ -95,9 +100,9 @@
 
 <div class="card">
   <h2>Status</h2>
-  <div class="fields">
-    <div class="field"><div class="kv"><span>Connection</span><span class="status"><span id="statDot" class="dot"></span><span id="statText">Idle</span></span></div></div>
-    <div class="field"><div class="chk" style="margin-top:0"><input type="checkbox" id="wakeToggle"><label for="wakeToggle">Keep screen awake</label></div></div>
+  <div class="statusrow">
+    <span class="conn">Connection <span class="status"><span id="statDot" class="dot"></span><span id="statText">Idle</span></span></span>
+    <label class="wake" for="wakeToggle">Keep screen awake<input type="checkbox" id="wakeToggle"></label>
   </div>
   <p class="hint hidden" id="wakeUnsupported">This browser can't keep the screen awake. On Android, set the display's own screen-timeout to a long value instead.</p>
 </div>
